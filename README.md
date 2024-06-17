@@ -27,7 +27,10 @@ Make sure you have the following installed:
 
 - [Node.js](https://nodejs.org/)
 - [Docker](https://www.docker.com/)
-- [MongoDB](https://www.mongodb.com/)
+
+- [MongoDB](https://www.mongodb.com/) -- If you want to set up the DB locally
+    OR
+- [MongoDB Atlas](https://www.mongodb.com/products/platform/atlas-database) --If you want to set up the DB on Cloud for free
 
 ## 🔧 Environment Variables
 
@@ -85,7 +88,6 @@ docker run -p 5003:5003 backend-service
 
 - **Auth**
 ```bash
-POST /api/auth/register: Register a new user.
 POST /api/auth/login: Login a user.
 POST /api/auth/logout: Logout a user.
 POST /api/auth/refresh: Refresh access token.
