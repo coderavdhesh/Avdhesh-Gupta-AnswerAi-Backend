@@ -1,5 +1,5 @@
 # Use an official Node.js runtime as a parent image
-FROM node:14
+FROM node:16
 
 # Set the working directory
 WORKDIR /usr/src/app
@@ -14,7 +14,7 @@ RUN npm install
 COPY . .
 
 # Expose the port the app runs on
-EXPOSE 5009
+EXPOSE 5003
 
 # Define environment variable
 ENV NODE_ENV=production
