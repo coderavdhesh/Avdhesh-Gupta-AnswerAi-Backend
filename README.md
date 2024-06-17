@@ -35,7 +35,8 @@ Create a `.env` file in the root directory and add the following:
 ```bash
 MONGO_URI=<Your MongoDB URI>
 JWT_SECRET=<Your JWT Secret>
-OPENAI_API_KEY=<Your OpenAI API Key> 
+OPENAI_API_KEY=<Your OpenAI API Key>
+PORT=5003
 ```
 
 ## 📦 Installation
@@ -51,9 +52,11 @@ npm install
 
 Start the application:
 ```bash
-npm src/app.js or npm start
-The server will run on http://localhost:5003.
+npm src/app.js 
+    or 
+npm start
 ```
+The server will run on http://localhost:5003.
 
 ## ✅ Running Tests
 
