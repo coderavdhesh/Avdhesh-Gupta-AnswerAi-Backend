@@ -33,16 +33,14 @@ Make sure you have the following installed:
 
 Create a `.env` file in the root directory and add the following:
 
-```plaintext
 MONGO_URI=<Your MongoDB URI>
 JWT_SECRET=<Your JWT Secret>
 OPENAI_API_KEY=<Your OpenAI API Key>
 
-
 ## 📦 Installation
 
 Clone the repository and install dependencies:
-```plaintext
+
 git clone https://github.com/coderavdhesh/Avdhesh-Gupta-AnswerAi-Backend.git
 cd path/to/Avdhesh-Gupta-AnswerAi-Backend
 npm install
