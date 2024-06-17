@@ -43,7 +43,7 @@ PORT=5003
 
 Clone the repository and install dependencies:
 ```bash
-git clone [https://github.com/coderavdhesh/Avdhesh-Gupta-AnswerAi-Backend.git]
+git clone https://github.com/coderavdhesh/Avdhesh-Gupta-AnswerAi-Backend.git
 cd path/to/Avdhesh-Gupta-AnswerAi-Backend
 npm install
 ```
@@ -53,10 +53,12 @@ npm install
 Start the application:
 ```bash
 npm src/app.js 
+```
     or 
+```bash  
 npm start
 ```
-The server will run on http://localhost:5003.
+The server will run on http://localhost:5003, locally on your laptop.
 
 ## ✅ Running Tests
 
