@@ -69,10 +69,8 @@ npm test
 
 ## 🐳 Docker Setup
 
-Build the Docker image:
-```bash
-Build the image of the DockerFile:
-```
+
+Build the Docker Image of the DockerFile:
 
 ```bash
 docker build -t answerai-backend .
@@ -85,7 +83,7 @@ docker run -p 5003:5003 backend-service
 
 ## 📚 API Endpoints
 
-- ** Auth **
+- **Auth**
 ```bash
 POST /api/auth/register: Register a new user.
 POST /api/auth/login: Login a user.
@@ -93,14 +91,14 @@ POST /api/auth/logout: Logout a user.
 POST /api/auth/refresh: Refresh access token.
 ```
 
-- ** Users **
+- **Users**
 ```bash
 POST /api/users: Create a new user account.
 GET /api/users/:userId: Retrieve a user profile.
 GET /api/users/
 ```
 
-- ** Questions **
+- **Questions**
 ```bash
 GET /questions: Retrieve all questions asked by the user.
 POST /api/questions: Accept user question and return AI-generated answer.
