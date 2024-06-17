@@ -43,7 +43,7 @@ PORT=5003
 
 Clone the repository and install dependencies:
 ```bash
-git clone https://github.com/coderavdhesh/Avdhesh-Gupta-AnswerAi-Backend.git
+git clone [https://github.com/coderavdhesh/Avdhesh-Gupta-AnswerAi-Backend.git]
 cd path/to/Avdhesh-Gupta-AnswerAi-Backend
 npm install
 ```
