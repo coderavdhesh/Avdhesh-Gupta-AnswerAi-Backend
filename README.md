@@ -37,3 +37,80 @@ Create a `.env` file in the root directory and add the following:
 MONGO_URI=<Your MongoDB URI>
 JWT_SECRET=<Your JWT Secret>
 OPENAI_API_KEY=<Your OpenAI API Key>
+
+
+## 📦 Installation
+
+Clone the repository and install dependencies:
+```plaintext
+git clone https://github.com/coderavdhesh/Avdhesh-Gupta-AnswerAi-Backend.git
+cd path/to/Avdhesh-Gupta-AnswerAi-Backend
+npm install
+
+## 🏃 Running the Application
+
+Start the application:
+```plaintext
+npm src/app.js or npm start
+The server will run on http://localhost:5003.
+
+## ✅ Running Tests
+
+Run the tests using Jest:
+```plaintext
+npm test
+
+## 🐳 Docker Setup
+
+Build the Docker image:
+```plaintext
+
+Build the image of the DockerFile:
+```plaintext
+docker build -t answerai-backend .
+
+Run the Docker container:
+```plaintext
+docker run -p 5003:5003 backend-service
+
+
+## 📚 API Endpoints
+
+- ** Auth **
+```plaintext
+POST /api/auth/register: Register a new user.
+POST /api/auth/login: Login a user.
+POST /api/auth/logout: Logout a user.
+POST /api/auth/refresh: Refresh access token.
+
+- ** Users **
+```plaintext
+POST /api/users: Create a new user account.
+GET /api/users/:userId: Retrieve a user profile.
+GET /api/users/
+
+- ** Questions **
+```plaintext
+GET /questions: Retrieve all questions asked by the user.
+POST /api/questions: Accept user question and return AI-generated answer.
+GET /api/questions/:questionId: Retrieve a specific question and answer.
+
+
+## 🏗 Architecture Diagram
+
+Below is a high-level architecture diagram of the service:
+```plaintext
+User
+  |
+  v
+API Gateway -> Load Balancer -> Auto Scaling Group -> EC2 Instances (Backend Service)
+                                          |
+                                          v
+                                      RDS (Database)
+                                          |
+                                          v
+                                       S3 (Static Assets)
+
+## 📖 License
+
+This project is licensed under the MIT License. See the LICENSE file for details.
