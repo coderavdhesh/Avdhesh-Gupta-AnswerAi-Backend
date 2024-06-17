@@ -1,4 +1,4 @@
-# 🌟 Backend Service 🌟
+# 🌟 AnswerAi Backend Service 🌟
 
 Welcome to the Backend Service! This service, built with Node.js and Express.js, is designed to handle user requests and generate AI-powered answers. It's secure, scalable, and ready to integrate with a frontend application.
 
