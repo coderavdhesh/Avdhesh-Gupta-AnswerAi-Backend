@@ -6,8 +6,6 @@ let token;
 let userId;
 let questionId;
 
-
-
 beforeAll(async () => {
     // Register and login a user to get a token
     // const random_username = Math.random().toString(36);
@@ -36,7 +34,7 @@ describe('AnswerAi Endpoints', () => {
 
     
     it('should register a new user', async () => {
-        const random_username = Math.random().toString(36);
+        const random_username = Math.random().toString(36)+' - testing data';
         const res = await request(app)
             .post('/api/users/newUser')
             .send({
@@ -83,8 +81,6 @@ describe('AnswerAi Endpoints', () => {
     });
 
 
-
-
     // test cases for Users
 
     it('should retrieve user profile', async () => {
@@ -107,7 +103,7 @@ describe('AnswerAi Endpoints', () => {
 
     it('should fail to retrieve user profile without token', async () => {
         const res = await request(app).get(`/api/users/${userId}`);
-        expect(res.statusCode).toEqual(500);
+        expect(res.statusCode).toEqual(401);
         // expect(res.body).toHaveProperty('TypeError');
     });
 
