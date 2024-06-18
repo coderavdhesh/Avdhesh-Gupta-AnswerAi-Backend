@@ -56,9 +56,7 @@ npm install
 Start the application:
 ```bash
 npm src/app.js 
-```
     or 
-```bash  
 npm start
 ```
 The server will run on http://localhost:5003, locally on your laptop.
@@ -81,7 +79,7 @@ docker build -t answerai-backend .
 
 Run the Docker container:
 ```bash
-docker run -p 5003:5003 backend-service
+docker run -p 5003:5003 answerai-backend
 ```
 
 ## 📚 API Endpoints
