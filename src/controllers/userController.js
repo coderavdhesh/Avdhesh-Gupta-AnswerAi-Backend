@@ -2,6 +2,7 @@ const User = require('../models/user');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const Question = require('../models/question');
+const mongoose = require('mongoose')
 
 const getUserProfileByUserID = async (req, res) => {
     const { userId } = req.params;

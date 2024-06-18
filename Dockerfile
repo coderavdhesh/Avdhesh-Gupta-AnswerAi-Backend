@@ -17,7 +17,7 @@ COPY . .
 EXPOSE 5003
 
 # Define environment variable
-ENV NODE_ENV=production
+ENV NODE_ENV=development
 
 # Run the app
 CMD ["node", "src/app.js"]
