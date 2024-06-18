@@ -16,7 +16,7 @@ const getAnswer = async (question) => {
                 { "role": "user", "content": `${question}` }
             ]
         });
-        console.log(response);
+        // console.log(response);
         // return response;
         return response.content[0].text.trim();
     } catch (error) {
