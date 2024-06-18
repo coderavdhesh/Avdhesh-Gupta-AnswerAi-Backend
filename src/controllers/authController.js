@@ -1,7 +1,7 @@
 const User = require('../models/user');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-
+const BlacklistedTokens = require('../models/blackListedTokens');
 
 // generating the new token for the exixting user
 const login = async (req, res) => {
@@ -28,15 +28,19 @@ const login = async (req, res) => {
     }
 };
 
-const logout = (req, res) => {
+const logout = async (req, res) => {
 
     console.log("Logging out the session : logout()")
     const token = req.header('Authorization').replace('Bearer ', '');
+    
+    try {
+        const blacklistedToken = new BlacklistedTokens({ token });
+        await blacklistedToken.save();
 
-    // Generate a new token with a very short expiration time (e.g., 1 second)
-    // const expiredToken = jwt.sign({}, process.env.JWT_SECRET, { expiresIn: '1s' });
-
-    res.status(200).json({ message: 'User logged out, Sucessfully!'});
+        res.status(200).json({ message: 'User logged out successfully and token blacklisted' });
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to logout user' });
+    }
 };
 
 // Refresh token
@@ -54,7 +58,7 @@ const refreshToken = async (req, res) => {
         console.log("Refreshed the token.")
         res.status(200).json({ accessToken });
     } catch (error) {
-        res.status(400).json({ error: 'Invalid refresh token' });
+        res.status(400).json({ error: 'Token is expired already, Please login again!' });
     }
 };
 
