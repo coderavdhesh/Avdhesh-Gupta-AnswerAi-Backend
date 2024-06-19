@@ -20,6 +20,7 @@ const login = async (req, res) => {
         }
 
         const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '15m' });
+        // const refreshToken = jwt.sign({ userId: user._id }, process.env.JWT_REFRESH_SECRET, { expiresIn: '7d' });
 
         console.log(`The access token generated successfully`)
         res.status(200).json({ token });
@@ -34,6 +35,11 @@ const logout = async (req, res) => {
     const token = req.header('Authorization').replace('Bearer ', '');
     
     try {
+        // const existingToken = await BlacklistedToken.findOne({ token });
+        // if (existingToken) {
+        //     return res.status(400).json({ message: 'Token is already expired or blacklisted' });
+        // }
+
         const blacklistedToken = new BlacklistedTokens({ token });
         await blacklistedToken.save();
 
@@ -43,24 +49,58 @@ const logout = async (req, res) => {
     }
 };
 
-// Refresh token
 const refreshToken = async (req, res) => {
-    console.log("Refreshing the token : refreshToken()")
-    const { refreshToken } = req.body;
-    if (!refreshToken) {
+    console.log("Refreshing the token : refreshToken()");
+    const { refreshToken: providedRefreshToken } = req.body;
+
+    if (!providedRefreshToken) {
         return res.status(401).json({ error: 'Refresh token not provided' });
     }
 
     try {
-        const decoded = jwt.verify(refreshToken, process.env.JWT_REFRESH_SECRET);
-        // Generate new access token with short expiration time
-        const accessToken = jwt.sign({ userId: decoded.userId }, process.env.JWT_SECRET, { expiresIn: '15m' });
-        console.log("Refreshed the token.")
-        res.status(200).json({ accessToken });
+        // Verify the provided refresh token
+        const decoded = jwt.verify(providedRefreshToken, process.env.JWT_REFRESH_SECRET);
+        
+        // Log the decoded information for debugging
+        console.log("Decoded refresh token: ", decoded);
+
+        // Generate a new access token with a short expiration time
+        const newAccessToken = jwt.sign({ userId: decoded.userId }, process.env.JWT_SECRET, { expiresIn: '15m' });
+        
+        // Optional: Generate a new refresh token
+        const newRefreshToken = jwt.sign({ userId: decoded.userId }, process.env.JWT_REFRESH_SECRET, { expiresIn: '7d' });
+
+        console.log("Refreshed the token.");
+        res.status(200).json({ accessToken: newAccessToken, refreshToken: newRefreshToken });
     } catch (error) {
-        res.status(400).json({ error: 'Token is expired already, Please login again!' });
+        console.error("Error refreshing token: ", error);
+        res.status(400).json({ error: 'Invalid refresh token or token has expired. Please login again!' });
     }
 };
+
+// Refresh token
+// Basic refresh token logic
+// const refreshToken = async (req, res) => {
+//     console.log("Refreshing the token : refreshToken()");
+//     console.log(req.body);
+//     const refreshToken = req.body.refreshToken;
+
+//     if (!refreshToken) {
+//         return res.status(401).json({ error: 'Refresh token not provided' });
+//     }
+
+//     try {
+//         const decoded = jwt.verify(providedRefreshToken, process.env.JWT_SECRET);
+
+//         // Generate new access token with short expiration time
+//         const newAccessToken = jwt.sign({ userId: decoded.userId }, process.env.JWT_SECRET, { expiresIn: '15m' });
+
+//         console.log("Refreshed the token.");
+//         res.status(200).json({ accessToken: newAccessToken });
+//     } catch (error) {
+//         res.status(400).json({ error: 'Invalid refresh token or token has expired. Please login again!' });
+//     }
+// };
 
 module.exports = {
     login,
