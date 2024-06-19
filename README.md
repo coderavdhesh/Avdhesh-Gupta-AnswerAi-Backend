@@ -126,7 +126,7 @@ GET /api/questions/:questionId: Retrieve a specific question and answer by quest
 
 Below is a high-level architecture diagram of the service:
 
-![Architecture Diagram](./images/AnswerAi AWS Design Diagram.png)
+![Architecture Diagram](./images/answerai_design_diagram.png)
 
 ## 📖 License
 
