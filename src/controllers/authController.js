@@ -20,7 +20,6 @@ const login = async (req, res) => {
         }
 
         const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '15m' });
-        // const refreshToken = jwt.sign({ userId: user._id }, process.env.JWT_REFRESH_SECRET, { expiresIn: '7d' });
 
         console.log(`The access token generated successfully`)
         res.status(200).json({ token });
@@ -35,17 +34,12 @@ const logout = async (req, res) => {
     const token = req.header('Authorization').replace('Bearer ', '');
     
     try {
-        // const existingToken = await BlacklistedToken.findOne({ token });
-        // if (existingToken) {
-        //     return res.status(400).json({ message: 'Token is already expired or blacklisted' });
-        // }
-
         const blacklistedToken = new BlacklistedTokens({ token });
         await blacklistedToken.save();
 
         res.status(200).json({ message: 'User logged out successfully and token blacklisted' });
     } catch (error) {
-        res.status(500).json({ error: 'Failed to logout user' });
+        res.status(500).json({ error: 'Failed to logout user, Token is already expired or blacklisted' });
     }
 };
 
