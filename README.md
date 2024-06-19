@@ -51,13 +51,11 @@ cd path/to/Avdhesh-Gupta-AnswerAi-Backend
 npm install
 ```
 
-## 🏃 Running the Application
+## 🏃 Running the Application locally
 
 Start the application:
 ```bash
-npm src/app.js 
-    or 
-npm start
+npm src/app.js
 ```
 The server will run on http://localhost:5003, locally on your laptop.
 
@@ -70,57 +68,65 @@ npm test
 
 ## 🐳 Docker Setup
 
-
 Build the Docker Image of the DockerFile:
 
 ```bash
 docker build -t answerai-backend .
 ```
 
-Run the Docker container:
+Run the Docker container(deploy the app locally):
 ```bash
 docker run -p 5003:5003 answerai-backend
 ```
+
+## 🐳 Docker Compose Setup (Best for the multiple DockerFiles)
+
+Build the Docker Image of the DockerFile, using Docker compose:
+
+```bash
+docker compose build
+```
+
+Run the Docker container(deploy the app locally):
+```bash
+docker run -p 5003:5003 answerai-backend
+```
+
+Run the Docker container(to run the unit test cases):
+```bash
+docker compose run -t tests
+```
+
+
 
 ## 📚 API Endpoints
 
 - **Auth**
 ```bash
-POST /api/auth/login: Login a user.
-POST /api/auth/logout: Logout a user.
-POST /api/auth/refresh: Refresh access token.
+POST /api/auth/login  : Login a user.
+POST /api/auth/logout  : Logout a user.
+POST /api/auth/refresh  : Refresh access token.
 ```
 
 - **Users**
 ```bash
-POST /api/users: Create a new user account.
-GET /api/users/:userId: Retrieve a user profile.
-GET /api/users/
+GET /api/users  : to reteive all the users in the database
+POST /api/users/newUser  : Create a new user account.
+GET /api/users/:userId  : Retrieve a user profile.
+GET /api/users/:userId/questions  : To retrive all the question of the specific user
 ```
 
 - **Questions**
 ```bash
-GET /questions: Retrieve all questions asked by the user.
 POST /api/questions: Accept user question and return AI-generated answer.
-GET /api/questions/:questionId: Retrieve a specific question and answer.
+GET /api/questions/:questionId: Retrieve a specific question and answer by question ID.
 ```
 
 ## 🏗 Architecture Diagram
 
 Below is a high-level architecture diagram of the service:
-```bash
-User
-  |
-  v
-API Gateway -> Load Balancer -> Auto Scaling Group -> EC2 Instances (Backend Service)
-                                          |
-                                          v
-                                      RDS (Database)
-                                          |
-                                          v
-                                       S3 (Static Assets)
 
-```
+![Architecture Diagram](./images/answerai_design_diagram.png)
 
 ## 📖 License
 
